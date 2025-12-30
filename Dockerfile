@@ -1,12 +1,10 @@
-FROM node:20-alpine
+FROM node:20-slim
 
 # Install Piper TTS dependencies
-RUN apk add --no-cache \
-    python3 \
-    py3-pip \
-    build-base \
+RUN apt-get update && apt-get install -y \
     wget \
-    espeak-ng
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Piper TTS
 WORKDIR /tmp
@@ -14,7 +12,6 @@ RUN wget https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.t
     tar -xzf piper_amd64.tar.gz && \
     cp -r piper/* /usr/local/bin/ && \
     chmod +x /usr/local/bin/piper && \
-    ls -la /usr/local/bin/piper && \
     rm -rf piper piper_amd64.tar.gz
 
 # Download voice models
