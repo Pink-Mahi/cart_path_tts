@@ -16,11 +16,15 @@ RUN wget https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.t
     chmod +x /usr/local/bin/piper && \
     rm -rf piper piper_amd64.tar.gz
 
-# Download voice model (en_US-lessac-medium - natural female voice)
+# Download voice models
+# AI Bot voice: en_US-lessac-medium (natural female voice)
+# Admin voice: en_US-danny-low (deep male voice)
 RUN mkdir -p /models && \
     cd /models && \
     wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/lessac/medium/en_US-lessac-medium.onnx && \
-    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json
+    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json && \
+    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/danny/low/en_US-danny-low.onnx && \
+    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/danny/low/en_US-danny-low.onnx.json
 
 # Set up application
 WORKDIR /app
