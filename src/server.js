@@ -39,8 +39,8 @@ app.post('/synthesize', async (req, res) => {
     const outputPath = path.join(AUDIO_DIR, `${audioId}.wav`);
 
     // Run Piper TTS
-    // Piper expects text via stdin and outputs to stdout
-    const command = `echo "${text.replace(/"/g, '\\"')}" | piper --model ${voice} --output_file ${outputPath}`;
+    // Use full path to piper binary
+    const command = `echo "${text.replace(/"/g, '\\"')}" | /usr/local/bin/piper --model /models/${voice}.onnx --output_file ${outputPath}`;
 
     await execAsync(command);
 
