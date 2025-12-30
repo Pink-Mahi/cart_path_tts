@@ -12,8 +12,9 @@ RUN apk add --no-cache \
 WORKDIR /tmp
 RUN wget https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.tar.gz && \
     tar -xzf piper_amd64.tar.gz && \
-    mv piper/piper /usr/local/bin/ && \
+    cp -r piper/* /usr/local/bin/ && \
     chmod +x /usr/local/bin/piper && \
+    ls -la /usr/local/bin/piper && \
     rm -rf piper piper_amd64.tar.gz
 
 # Download voice models
