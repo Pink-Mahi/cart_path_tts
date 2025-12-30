@@ -48,8 +48,49 @@ Response:
 
 ## Available Voices
 
+### Currently Installed:
 - `en_US-lessac-medium` (default) - Natural female voice
-- More voices can be added by downloading from [Piper Voices](https://huggingface.co/rhasspy/piper-voices)
+
+### How to Switch Voices:
+
+**Easy Method (No Code Changes):**
+1. Go to Coolify dashboard
+2. Open TTS service environment variables
+3. Add/change: `PIPER_VOICE=en_US-lessac-medium`
+4. Restart the service
+5. Done! New voice will be used immediately
+
+### Popular Voice Options:
+
+**Female Voices:**
+- `en_US-lessac-medium` - Professional, clear (current)
+- `en_US-amy-medium` - Friendly, conversational
+- `en_US-kimberly-low` - Warm, approachable
+- `en_GB-alba-medium` - British accent
+
+**Male Voices:**
+- `en_US-danny-low` - Deep, authoritative
+- `en_US-joe-medium` - Neutral, professional
+- `en_GB-alan-medium` - British accent
+
+**Browse all 100+ voices:** https://huggingface.co/rhasspy/piper-voices/tree/v1.0.0/en
+
+### To Add a New Voice Model:
+
+1. **Update Dockerfile** to download the voice:
+```dockerfile
+# Add after the existing voice download
+RUN cd /models && \
+    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/danny/low/en_US-danny-low.onnx && \
+    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/danny/low/en_US-danny-low.onnx.json
+```
+
+2. **Redeploy** the service
+
+3. **Set environment variable** in Coolify:
+   - `PIPER_VOICE=en_US-danny-low`
+
+4. **Restart** the service
 
 ## Deployment on Coolify
 

@@ -28,7 +28,8 @@ app.get('/health', (req, res) => {
 // Text-to-Speech endpoint
 app.post('/synthesize', async (req, res) => {
   try {
-    const { text, voice = 'en_US-lessac-medium' } = req.body;
+    const { text } = req.body;
+    const voice = process.env.PIPER_VOICE || 'en_US-lessac-medium';
 
     if (!text) {
       return res.status(400).json({ error: 'Text is required' });
@@ -39,7 +40,7 @@ app.post('/synthesize', async (req, res) => {
     const outputPath = path.join(AUDIO_DIR, `${audioId}.wav`);
 
     // Run Piper TTS
-    // Use full path to piper binary
+    // Use full path to piper binary and model
     const command = `echo "${text.replace(/"/g, '\\"')}" | /usr/local/bin/piper --model /models/${voice}.onnx --output_file ${outputPath}`;
 
     await execAsync(command);
