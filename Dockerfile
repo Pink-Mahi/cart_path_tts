@@ -19,7 +19,7 @@ RUN wget https://github.com/rhasspy/piper/releases/download/v1.2.0/piper_amd64.t
 # AI Bot voice: en_US-lessac-medium (natural female voice)
 # Admin voice: en_US-danny-low (deep male voice)
 # Spanish voices
-# AI Bot voice: es_ES-mls_10246-medium (female voice - upgraded for better quality)
+# AI Bot voice: es_ES-mls_10246-low (female voice)
 # Admin voice: es_ES-mls_9972-low (male voice)
 RUN mkdir -p /models && \
     cd /models && \
@@ -27,10 +27,10 @@ RUN mkdir -p /models && \
     wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/lessac/medium/en_US-lessac-medium.onnx.json && \
     wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/danny/low/en_US-danny-low.onnx && \
     wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/en/en_US/danny/low/en_US-danny-low.onnx.json && \
-    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/es/es_ES/mls_10246/medium/es_ES-mls_10246-medium.onnx && \
-    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/es/es_ES/mls_10246/medium/es_ES-mls_10246-medium.onnx.json && \
-    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/es/es_ES/mls_9972/low/es_ES-mls_9972-low.onnx && \
-    wget https://huggingface.co/rhasspy/piper-voices/resolve/v1.0.0/es/es_ES/mls_9972/low/es_ES-mls_9972-low.onnx.json
+    wget https://github.com/rhasspy/piper/releases/download/v1.2.0/es_ES-mls_10246-low.onnx && \
+    wget https://github.com/rhasspy/piper/releases/download/v1.2.0/es_ES-mls_10246-low.onnx.json && \
+    wget https://github.com/rhasspy/piper/releases/download/v1.2.0/es_ES-mls_9972-low.onnx && \
+    wget https://github.com/rhasspy/piper/releases/download/v1.2.0/es_ES-mls_9972-low.onnx.json
 
 # Set up application
 WORKDIR /app
